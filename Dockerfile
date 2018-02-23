@@ -13,12 +13,12 @@ RUN apk update && apk upgrade && \
     ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
 
     # Type docker-php-ext-install to see available extensions
-    docker-php-ext-install pdo_mysql opcache && \
+    docker-php-ext-install mysqli pdo_mysql opcache && \
 
     # install xdebug
     apk add --no-cache --virtual .phpize-deps $PHPIZE_DEPS && \
     pecl install xdebug && \
-    docker-php-ext-enable pdo_mysql opcache xdebug && \
+    docker-php-ext-enable mysqli pdo_mysql opcache xdebug && \
     echo "error_reporting = E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
     echo "display_startup_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
     echo "display_errors = On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
