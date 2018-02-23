@@ -28,6 +28,12 @@ RUN apk update && apk upgrade && \
     echo "xdebug.remote_port=9001" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
     apk del .phpize-deps && \
 
+    echo "file_uploads = On" >> /usr/local/etc/php/conf.d/custom.ini && \
+    echo "memory_limit = 64M" >> /usr/local/etc/php/conf.d/custom.ini && \
+    echo "upload_max_filesize = 64M" >> /usr/local/etc/php/conf.d/custom.ini && \
+    echo "post_max_size = 64M" >> /usr/local/etc/php/conf.d/custom.ini && \
+    echo "max_execution_time = 600" >> /usr/local/etc/php/conf.d/custom.ini && \
+
     # Custom commands
     echo 'alias sf3="php bin/console"' >> ~/.bashrc && \
     echo 'alias ll="ls -la --color"' >> ~/.bashrc && \
