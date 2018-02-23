@@ -28,6 +28,12 @@ RUN apk update && apk upgrade && \
     echo "xdebug.remote_port=9001" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && \
     apk del .phpize-deps && \
 
+    # Install wp-cli
+    curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+    php wp-cli.phar --info && \
+    chmod +x wp-cli.phar && \
+    mv wp-cli.phar /usr/local/bin/wp && \
+
     # Custom commands
     echo 'alias sf3="php bin/console"' >> ~/.bashrc && \
     echo 'alias ll="ls -la --color"' >> ~/.bashrc && \
